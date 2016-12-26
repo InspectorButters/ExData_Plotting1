@@ -1,1 +1,13 @@
-getwd()library("data.table")full <- fread(input = "household_power_consumption.txt", stringsAsFactors = FALSE, na.strings = "?")#Convert "Date" column from character to Datefull <- full[, Date:= as.Date(x = Date, format = "%d/%m/%Y")]#Only the relevant datespart <- full[ Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"),]hist(part$Global_active_power, col = "red",     xlab = "Global Active Power (kilowats)",     main = "Global Active Power")
+getwd()library("data.table")
+
+full <- fread(input = "household_power_consumption.txt", stringsAsFactors = FALSE, na.strings = "?")
+
+#Convert "Date" column from character to Date
+full <- full[, Date:= as.Date(x = Date, format = "%d/%m/%Y")]
+
+#Only the relevant dates
+part <- full[ Date >= as.Date("2007-02-01") & Date <= as.Date("2007-02-02"),]
+
+hist(part$Global_active_power, col = "red",
+  xlab = "Global Active Power (kilowats)",     
+  main = "Global Active Power")
